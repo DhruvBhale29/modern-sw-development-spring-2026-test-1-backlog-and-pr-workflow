@@ -29,27 +29,32 @@ def heal():
         p_hp = MAX_HP
     print(f"Healed! HP is now {p_hp}")
 
+
 # --- Simple Game Loop ---
-while p_hp > 0 and b_hp > 0:
-    print(f"\nPlayer: {p_hp} | Boss: {b_hp}")
-    choice = input("Action [a]ttack, [h]eal: ").lower()
-    
-    if choice == 'a':
-        attack()
-    elif choice == 'h':
-        heal()
-    
-    else:
-        print("Invalid choice! Please choose 'a' or 'h'.")
-        
-    # WIN CONDITION: The game must recognize when the boss reaches 0 HP.
-    # FIX: Display "Victory!" and break out of the loop to end combat.
-    if b_hp <= 0:
-        print("Victory!")
-        break
+def main():
+    global p_hp, b_hp
 
-    if b_hp > 0:
-        p_hp -= 10
+    while p_hp > 0 and b_hp > 0:
+        print(f"\nPlayer: {p_hp} | Boss: {b_hp}")
+        choice = input("Action [a]ttack, [h]eal: ").lower()
 
-if p_hp <= 0:
-    print("Game Over!")
+        if choice == 'a':
+            attack()
+        elif choice == 'h':
+            heal()
+        else:
+            print("Invalid choice! Please choose 'a' or 'h'.")
+
+        if b_hp <= 0:
+            print("Victory!")
+            break
+
+        if b_hp > 0:
+            p_hp -= 10
+
+    if p_hp <= 0:
+        print("Game Over!")
+
+
+if __name__ == "__main__":
+    main()
